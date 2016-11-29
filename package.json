@@ -1,0 +1,31 @@
+{
+  "name": "secret-santa",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "url": "git@github.com:HektorW/secret-santa.git",
+    "type": "git"
+  },
+  "author": "Hektor Wallin <hektorw@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "start": "node index.js",
+    "start:dev": "NODE_ENV=development nodemon --debug=7001 --ignore ./client/ index.js | bunyan -o short",
+    "build": "cd client/ && npm run build"
+  },
+  "dependencies": {
+    "body-parser": "^1.15.2",
+    "bunyan": "^1.8.5",
+    "co": "^4.6.0",
+    "cookie-parser": "^1.4.3",
+    "express": "^4.14.0",
+    "express-session": "^1.14.2",
+    "passport": "^0.3.2",
+    "passport-local": "^1.0.0",
+    "sqlite": "^2.2.3"
+  },
+  "devDependencies": {
+    "eslint": "^3.11.1",
+    "nodemon": "^1.11.0"
+  }
+}
