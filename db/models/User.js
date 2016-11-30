@@ -1,38 +1,64 @@
-const users = {}
+const { createHash } = require('crypto')
+const db = require('../index')
+const { getUserInspirations } = require('./inspiration')
+const log = require('../../log')('db/models/User')
 
-exports.addUser = function(realName, username, password) {
-  const id = Object.keys(users).length
-  const inspirations = [] 
-  const user = { id, inspirations, realName, username, password }
-  users[id] = user
-  return Promise.resolve(user)
+const tableName = exports.tableName = 'user'
+const tableColumns = [
+  'id INTEGER PRIMARY KEY AUTOINCREMENT',
+  'username TEXT',
+  'password TEXT',
+  'realName TEXT',
+]
+
+exports.setup = function setup() {
+  return db.run(`CREATE TABLE IF NOT EXISTS ${tableName} (${tableColumns.join(', ')})`)
+    .then(() => log.info({ tableName, tableColumns }, 'set up user table'))
+    .catch(error => log.error(error, 'failed to create user table'))
+}
+
+
+exports.addUser = function(username, password, realName) {
+  const columns = ['username', 'password', 'realName']
+  const values = [username.toLowerCase(), getMd5(password), realName]
+  return getByUsername(username)
+    .then(existingUser => {
+      if (existingUser) {
+        throw new Error('A user already exists')
+      }
+    })
+    .then(() => db.insert(tableName, columns, values))
+    .then(id => exports.getById(id))
 }
 
 exports.authenticateUser = function(username, password) {
-  const user = Object.keys(users)
-    .map(id => users[id])
-    .find(user => (
-      user.username === username &&
-      user.password === password
-    ))
-  return Promise.resolve(user || null)
+  const query = `SELECT id FROM ${tableName} WHERE username = ? AND password = ?`
+  const values = [username.toLowerCase(), getMd5(password)]
+  return db.get(query, values)
+    .then(user => {
+      if (!user) {
+        return null
+      }
+      return exports.getById(user.id)
+    })
 }
 
 exports.getById = function(id) {
-  return Promise.resolve(users[id] || null)
+  const query = `SELECT id, username, realName FROM ${tableName} WHERE id = ?`
+  const values = [id]
+  return db.get(query, values)
+    .then(user => getUserInspirations(id)
+      .then(inspirations => Object.assign({ inspirations }, user))
+    )
 }
 
-exports.addInspiration = function(user, inspiration) {
-  user.inspirations.push(inspiration)
-  return Promise.resolve(user)
+
+function getByUsername(username) {
+  const query = `SELECT username FROM ${tableName} WHERE username = ?`
+  const values = [username]
+  return db.get(query, values)
 }
 
-exports.removeInspiration = function(user, inspirationId) {
-  user.inspirations.splice(inspirationId, 1)
-  return Promise.resolve(user)
-}
-
-exports.updateInspiration = function(user, inspirationId, updatedInspiration) {
-  user.inspirations[inspirationId] = updatedInspiration
-  return Promise.resolve(user)
+function getMd5(value) {
+  return createHash('md5').update(value).digest('hex')
 }

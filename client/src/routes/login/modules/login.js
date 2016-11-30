@@ -22,6 +22,11 @@ export function login(username, password) {
     try {
       user = await post('/auth/login', { body })
     } catch (error) {
+      if (error.status === 401) {
+        error = {
+          message: 'Det finns ingen med den användarnamn/lösenords kombinationen',
+        }
+      }
       return dispatch({ type: LOGIN_FAILURE, error })
     }
 

@@ -1950,13 +1950,7 @@ sprintf-js@~1.0.2:
   version "1.0.3"
   resolved "https://registry.yarnpkg.com/sprintf-js/-/sprintf-js-1.0.3.tgz#04e6926f662895354f3dd015203633b857297e2c"
 
-sqlite:
-  version "2.2.3"
-  resolved "https://registry.yarnpkg.com/sqlite/-/sqlite-2.2.3.tgz#c1a3777d5bc80bb9cd6ecb39e9bc500c380772e2"
-  dependencies:
-    sqlite3 "^3.1.8"
-
-sqlite3@^3.1.8:
+sqlite3:
   version "3.1.8"
   resolved "https://registry.yarnpkg.com/sqlite3/-/sqlite3-3.1.8.tgz#4cbcf965d8b901d1b1015cbc7fc415aae157dfaa"
   dependencies:

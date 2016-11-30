@@ -1,7 +1,8 @@
-const { removeInspiration } = require('../../../db/models/User')
+const { removeInspiration, getUserInspirations } = require('../../../db/models/inspiration')
 
 module.exports = function* removeInspirationRequest(req) {
   const { user } = req
-  const { inspirationId } = req.body
-  return yield removeInspiration(user, inspirationId) 
+  const { id } = req.body
+  yield removeInspiration(id)
+  return yield getUserInspirations(user.id)
 }

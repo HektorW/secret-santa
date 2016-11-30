@@ -1,8 +1,15 @@
 import React from 'react'
 
-export default ({ realName }) => (
+import InspirationList from './InspirationList'
+
+export default ({ realName, inspirations, addInspiration, updateInspiration, removeInspiration }) => (
   <div>
-    <h1>Me</h1>
-    {realName}
+    <h1>{realName}</h1>
+    <InspirationList
+      inspirations={inspirations}
+      addInspiration={addInspiration}
+      updateInspiration={updateInspiration}
+      removeInspiration={removeInspiration}
+    />
   </div>
 )

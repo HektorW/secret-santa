@@ -1,3 +1,4 @@
+import { replace } from 'react-router-redux'
 import { post } from '../api'
 import { setInspirations } from './inspirations'
 
@@ -22,8 +23,11 @@ export function loginUser(user) {
 }
 
 export function logout() {
-  post('/auth/logout')
-  return { type: LOGOUT_USER }
+  return dispatch => {
+    post('/auth/logout')
+    dispatch({ type: LOGOUT_USER })
+    dispatch(replace('/'))
+  }
 }
 
 
