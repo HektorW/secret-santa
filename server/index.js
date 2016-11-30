@@ -1,6 +1,11 @@
 const express = require('express')
+const { forceSsl } = require('../config')
 
 const app = express()
+
+if (forceSsl) {
+  app.use(require('./middleware/forceSsl'))
+}
 
 app.use(require('cookie-parser')())
 app.use(require('body-parser').json())
