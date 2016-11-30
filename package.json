@@ -11,7 +11,8 @@
   "scripts": {
     "start": "node index.js",
     "start:dev": "NODE_ENV=development nodemon --debug=7001 --ignore ./client/ index.js | bunyan -o short",
-    "build": "cd client/ && npm run build"
+    "build": "cd client/ && npm install && npm run build",
+    "postinstall": "if [ $RUN_BUILD ]; then npm run build; fi"
   },
   "dependencies": {
     "body-parser": "^1.15.2",
