@@ -1,5 +1,5 @@
 const db = require('../index')
-const log = require('../../log')('db/models/Inspiration')
+const log = require('../../log')('db/models/inspiration')
 
 const tableName = 'inspiration'
 const tableColumns = [

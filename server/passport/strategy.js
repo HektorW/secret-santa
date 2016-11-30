@@ -1,5 +1,5 @@
 const { Strategy } = require('passport-local')
-const { authenticateUser } = require('../../db/models/User')
+const { authenticateUser } = require('../../db/models/user')
 
 module.exports = new Strategy((username, password, done) => {
   authenticateUser(username, password).then(

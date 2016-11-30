@@ -1,7 +1,7 @@
 const { createHash } = require('crypto')
 const db = require('../index')
 const { getUserInspirations } = require('./inspiration')
-const log = require('../../log')('db/models/User')
+const log = require('../../log')('db/models/user')
 
 const tableName = exports.tableName = 'user'
 const tableColumns = [

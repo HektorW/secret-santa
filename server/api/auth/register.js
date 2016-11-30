@@ -1,4 +1,4 @@
-const { addUser } = require('../../../db/models/User')
+const { addUser } = require('../../../db/models/user')
 const log = require('../../../log')('server/api/auth/register')
 
 module.exports = function* register(req) {

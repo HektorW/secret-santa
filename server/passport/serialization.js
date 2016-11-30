@@ -1,4 +1,4 @@
-const { getById } = require('../../db/models/User')
+const { getById } = require('../../db/models/user')
 
 exports.serialize = function serialize(user, done) {
   done(null, user.id)
