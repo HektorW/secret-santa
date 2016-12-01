@@ -1,6 +1,6 @@
 const { Pool } = require('pg')
 const { parse } = require('url')
-const { databseSsl, databaseUrl } = require('../config')
+const { databaseSsl, databaseUrl } = require('../config')
 const log = require('../log')('db/postgres')
 
 let pool
@@ -15,7 +15,7 @@ exports.setup = function setup() {
     host,
     port,
     database,
-    ssl: databseSsl,
+    ssl: databaseSsl,
     max: 10,
   }
   pool = new Pool(config)
