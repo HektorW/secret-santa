@@ -1,10 +1,20 @@
 const { addUser } = require('../../../db/models/user')
+const { BadRequest } = require('../../utils/httpErrors')
 const log = require('../../../log')('server/api/auth/register')
 
 module.exports = function* register(req) {
-  const { realName, username, password } = req.body
+  const { realname, username, password } = req.body
   log.info({ body: req.body }, 'register')
-  const user = yield addUser(username, password, realName)
+
+  let user
+  try {
+    user = yield addUser(username, password, realname)
+  } catch (error) {
+    if (error.alreadyExists) {
+      throw new BadRequest('User already exists', { alreadyExists: true })
+    }
+    throw error
+  }
 
   return new Promise((resolve, reject) => {
     req.logIn(user, loginError => {

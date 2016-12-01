@@ -36,10 +36,10 @@ const ACTION_HANDLERS = {
     ...state,
     isLoggedIn: true,
     username: user.username,
-    realName: user.realName,
+    realname: user.realname,
     assigned: user.assigned,
   }),
-  [LOGOUT_USER]: state => ({ ...state, isLoggedIn: false, username: '', realName: '', assigned: null }),
+  [LOGOUT_USER]: state => ({ ...state, isLoggedIn: false, username: '', realname: '', assigned: null }),
 }
 
 

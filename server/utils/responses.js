@@ -12,7 +12,7 @@ exports.failure = function failure(response, error) {
 
   const status = error.status || 500
   const message = error.message || 'Unspecified error'
-  const errorData = error.data || {}
+  const errorData = error.errorData || {}
 
   response
     .status(status)

@@ -6,12 +6,12 @@ import Loader from '../../../components/Loader'
 import CheckLoggedIn from '../../../containers/CheckLoggedIn'
 
 
-const renderComponent = ({ isRegistering, register }) => {
+const renderComponent = ({ isRegistering, registerError, register }) => {
   if (isRegistering) {
     return <Loader text='Registering' />
   }
 
-  return <RegisterInput register={register} />
+  return <RegisterInput register={register} registerError={registerError} />
 }
 
 const Register = props => (
@@ -22,6 +22,7 @@ const Register = props => (
 
 const mapStateToProps = ({ register }) => ({
   isRegistering: register.isRegistering,
+  registerError: register.registerError,
 })
 
 const mapDispatchToProps = {

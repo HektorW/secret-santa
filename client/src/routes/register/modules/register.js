@@ -13,11 +13,15 @@ const REGISTER_SUCCESS = 'REGISTER_SUCCESS'
 const REGISTER_FAILURE = 'REGISTER_FAILURE'
 
 
-export function register(realName, username, password) {
+export function register(realname, username, password) {
   return async dispatch => {
+    if (!realname || !username || !password) {
+      return
+    }
+
     dispatch({ type: REGISTER_REQUEST })
 
-    const body = { realName, username, password }
+    const body = { realname, username, password }
     let user
     try {
       user = await post('/auth/register', { body })

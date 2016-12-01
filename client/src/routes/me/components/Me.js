@@ -2,14 +2,15 @@ import React from 'react'
 
 import InspirationList from './InspirationList'
 
-export default ({ realName, inspirations, addInspiration, updateInspiration, removeInspiration }) => (
+export default ({ realname, inspirations, addInspiration, updateInspiration, removeInspiration, logout }) => (
   <div>
-    <h1>{realName}</h1>
+    <h1>{realname}</h1>
     <InspirationList
       inspirations={inspirations}
       addInspiration={addInspiration}
       updateInspiration={updateInspiration}
       removeInspiration={removeInspiration}
     />
+    <button onClick={logout}>Logga ut</button>
   </div>
 )

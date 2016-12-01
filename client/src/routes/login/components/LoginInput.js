@@ -17,7 +17,7 @@ export default class LoginInput extends Component {
     const { loginError } = this.props
     return (
       <div className='login-input'>
-        <h1>Login</h1>
+        <h1 className='handwriting'>Elfsberg Tomte</h1>
         <form onSubmit={event => this.onSubmit(event)}>
           <label>
             <span>Användarnamn: </span>
@@ -37,11 +37,30 @@ export default class LoginInput extends Component {
           </label>
           <input type='submit' value='Logga in' />
         </form>
-        <Link to='/register'>Registrera</Link>
-        {!loginError ? null : (
-          <div>{loginError.message}</div>
-        )}
+        <Link to='/register'>Registrera en ny tomte</Link>
+        {loginError ? renderError(loginError) : null}
       </div>
     )
   }  
 }
+
+function renderError(error) {
+  if (error.status === 401) {
+    return (
+      <div>
+        <p>Det finns ingen användare som passar den här användarnamn/lösenords kombinationen.</p>
+        <p><small>PS. Om du har glömt ditt lösenord, hör av dig till Hektor.</small></p>
+      </div>
+    )
+  }
+
+  return (
+    <div>
+      <p>Något gick snett :(.</p>
+      <p>Testa en gång till.</p>
+      <p><small>Hör av dig till Hektor om det fortsätter strula.</small></p>
+    </div>
+  )
+}
+
+

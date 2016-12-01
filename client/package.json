@@ -36,6 +36,13 @@
       "semi": [
         "warn",
         "never"
+      ],
+      "no-use-before-define": [
+        "warn",
+        {
+          "functions": false,
+          "classes": false
+        }
       ]
     }
   },

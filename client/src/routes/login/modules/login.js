@@ -15,6 +15,10 @@ const LOGIN_FAILURE = 'LOGIN_FAILURE'
 
 export function login(username, password) {
   return async dispatch => {
+    if (!username || !password) {
+      return
+    }
+
     dispatch({ type: LOGIN_REQUEST })
 
     const body = { username, password }
@@ -22,11 +26,6 @@ export function login(username, password) {
     try {
       user = await post('/auth/login', { body })
     } catch (error) {
-      if (error.status === 401) {
-        error = {
-          message: 'Det finns ingen med den användarnamn/lösenords kombinationen',
-        }
-      }
       return dispatch({ type: LOGIN_FAILURE, error })
     }
 

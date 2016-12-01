@@ -13,5 +13,11 @@ module.exports = function createApiRoute() {
     router.use(routeName, routeHandler())
   })
 
+  router.use((req, res) => {
+    res
+      .status(404)
+      .end()
+  })
+
   return router
 }

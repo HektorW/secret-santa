@@ -1,5 +1,5 @@
 const { join } = require('path')
-const { static } = require('express')
+const { Router, static } = require('express')
 const { DEVELOPMENT } = require('../../config/env')
 const log = require('../../log')('server/client')
 
@@ -10,7 +10,22 @@ module.exports = function createClientRoute() {
   }
 
   log.info('Serving static client files')
-  return static(
-    join(__dirname, '../../client/build')
-  )
+
+  const router = Router()
+
+  const clientFolder = join(__dirname, '../../client/build')
+  
+  router.use(static(clientFolder))
+  router.use((req, res, next) => {
+    if (
+      req.method === 'GET' &&
+      req.accepts('html') &&
+      req.url.includes('.') !== true
+    ) {
+      return res.sendFile(join(clientFolder, 'index.html'))
+    }
+    next()
+  })
+
+  return router 
 }
