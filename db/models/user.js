@@ -1,15 +1,25 @@
 const { createHash } = require('crypto')
 const db = require('../index')
+const { databaseUrl } = require('../../config')
 const { getUserInspirations } = require('./inspiration')
 const log = require('../../log')('db/models/user')
 
-const tableName = exports.tableName = 'user'
-const tableColumns = [
-  'id INTEGER PRIMARY KEY AUTOINCREMENT',
-  'username TEXT',
-  'password TEXT',
-  'realName TEXT',
-]
+const usePostgres = !!databaseUrl
+
+const tableName = exports.tableName = 'user_table'
+const tableColumns = usePostgres === true
+  ? [
+    'id SERIAL PRIMARY KEY',
+    'username TEXT',
+    'password TEXT',
+    'realname TEXT',
+  ]
+  : [
+    'id INTEGER PRIMARY KEY AUTOINCREMENT',
+    'username TEXT',
+    'password TEXT',
+    'realname TEXT',
+  ]
 
 exports.setup = function setup() {
   return db.run(`CREATE TABLE IF NOT EXISTS ${tableName} (${tableColumns.join(', ')})`)
@@ -18,13 +28,15 @@ exports.setup = function setup() {
 }
 
 
-exports.addUser = function(username, password, realName) {
-  const columns = ['username', 'password', 'realName']
-  const values = [username.toLowerCase(), getMd5(password), realName]
+exports.addUser = function(username, password, realname) {
+  const columns = ['username', 'password', 'realname']
+  const values = [username.toLowerCase(), getMd5(password), realname]
   return getByUsername(username)
     .then(existingUser => {
       if (existingUser) {
-        throw new Error('A user already exists')
+        const error = new Error('A user already exists')
+        error.alreadyExists = true
+        throw error
       }
     })
     .then(() => db.insert(tableName, columns, values))
@@ -44,7 +56,7 @@ exports.authenticateUser = function(username, password) {
 }
 
 exports.getById = function(id) {
-  const query = `SELECT id, username, realName FROM ${tableName} WHERE id = ?`
+  const query = `SELECT id, username, realname FROM ${tableName} WHERE id = ?`
   const values = [id]
   return db.get(query, values)
     .then(user => getUserInspirations(id)

@@ -1,13 +1,22 @@
 const db = require('../index')
+const { databaseUrl } = require('../../config')
 const log = require('../../log')('db/models/inspiration')
 
+const usePostgres = !!databaseUrl
+
 const tableName = 'inspiration'
-const tableColumns = [
-  'id INTEGER PRIMARY KEY AUTOINCREMENT',
-  'value TEXT',
-  'userId INTEGER',
-  'FOREIGN KEY(userId) REFERENCES user(id)',
-]
+const tableColumns = usePostgres === true
+  ? [
+    'id SERIAL PRIMARY KEY',
+    'value TEXT',
+    'userId INTEGER REFERENCES user_table',
+  ]
+  : [
+    'id INTEGER PRIMARY KEY AUTOINCREMENT',
+    'value TEXT',
+    'userId INTEGER',
+    'FOREIGN KEY(userId) REFERENCES user_table(id)',
+  ]
 
 exports.setup = function setup() {
   return db.run(`CREATE TABLE IF NOT EXISTS ${tableName} (${tableColumns.join(', ')})`)
