@@ -27,9 +27,7 @@
 	width: 90%;
 }
 
-.login-form button,
-.login-form input[type='text'],
-.login-form input[type='password'] {
+.login-form button {
 	background: 0;
 	border: 0;
 	color: inherit;
@@ -38,12 +36,6 @@
 	margin: .5em 0;
 	outline: 0;
 	width: 100%;
-}
-
-.login-form input[type='text'],
-.login-form input[type='password'] {
-	border-bottom: 1px solid;
-	display: block;
 }
 
 .login-form .realname {

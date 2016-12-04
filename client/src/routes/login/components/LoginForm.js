@@ -60,11 +60,11 @@ export default class LoginForm extends Component {
 
           <form onSubmit={this.onSubmit}>
             {registerActive
-              ? <input type='text' ref='realname' className='realname' placeholder='Riktigt namn' />
+              ? <input type='text' ref='realname' className='input realname' placeholder='Riktigt namn' />
               : null
             }
-            <input type='text' ref='username' className='username' placeholder='Användarnamn' />
-            <input type='password' ref='password' className='password' placeholder='Lösenord' />
+            <input type='text' ref='username' className='input username' placeholder='Användarnamn' />
+            <input type='password' ref='password' className='input password' placeholder='Lösenord' />
 
             <button className='action-btn'>
               <span className="login-text"><span className='icon-key' />Logga in</span>
