@@ -26,6 +26,10 @@ export default function createApplicationStore(initialState = {}) {
   )
 
   store.asyncReducers = {}
+
+  if (process.env.NODE_ENV === 'development') {
+    window.store = store
+  }
   
   return store
 }

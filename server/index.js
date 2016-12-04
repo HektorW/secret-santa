@@ -8,6 +8,7 @@ if (forceSsl) {
   app.use(require('./middleware/forceSsl'))
 }
 
+app.disable('x-powered-by')
 
 app.use(require('cookie-parser')())
 app.use(require('body-parser').json())

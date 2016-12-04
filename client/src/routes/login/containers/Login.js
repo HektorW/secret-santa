@@ -1,15 +1,19 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import LoginInput from '../components/LoginInput'
-import { login } from '../modules/login'
-import Loader from '../../../components/Loader'
+import LoginForm from '../components/LoginForm'
+import { login } from '../../../modules/login'
+import { register } from '../../../modules/register'
 import CheckLoggedIn from '../../../containers/CheckLoggedIn'
 
-const renderComponent = ({ isLoggingIn, loginError, login }) => {
-  if (isLoggingIn) {
-    return <Loader text='Logging in' />
-  }
-  return <LoginInput login={login} loginError={loginError} />
+const renderComponent = ({ login, register, isLoading, errorText }) => {
+  return (
+    <LoginForm
+      login={login}
+      register={register}
+      isLoading={isLoading}
+      errorText={errorText}
+    />
+  )
 }
 
 const Login = props => (
@@ -19,13 +23,14 @@ const Login = props => (
 )
 
 
-const mapStateToProps = ({ login }) => ({
-  isLoggingIn: login.isLoggingIn,
-  loginError: login.loginError,
+const mapStateToProps = ({ login, register }) => ({
+  isLoading: login.isLoggingIn || register.isRegistering,
+  errorText: login.errorText || register.errorText,
 })
 
 const mapDispatchToProps = {
   login,
+  register,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Login)

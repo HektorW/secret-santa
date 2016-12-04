@@ -1,4 +1,18 @@
+html {
+	box-sizing: border-box;
+}
+
+*,
+*:after,
+*:before {
+	box-sizing: inherit;
+	font-weight: inherit;
+}
+
 body {
-  background-color: #222;
-  color: #fff;
+  background-color: #111;
+  color: #E5CE81;
+  font-family: 'Lato', sans-serif;
+  font-weight: 100;
+  margin: 0;
 }

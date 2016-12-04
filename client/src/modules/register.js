@@ -1,10 +1,10 @@
-import { post } from '../../../api'
-import { loginUser } from '../../../modules/user'
+import { post } from '../api'
+import { loginUser } from './user'
 
 
 const initialState = {
   isRegistering: false,
-  registerError: null,
+  errorText: null,
 }
 
 
@@ -26,7 +26,13 @@ export function register(realname, username, password) {
     try {
       user = await post('/auth/register', { body })
     } catch (error) {
-      return dispatch({ type: REGISTER_FAILURE, error })
+      let errorText
+      if (error.data.alreadyExists) {
+        errorText = 'Det finns redan en användare med det användarnamnet.'
+      } else {
+        errorText = 'Något gick snett :(, testa registrera igen.'
+      }
+      return dispatch({ type: REGISTER_FAILURE, errorText })
     }
 
     dispatch({ type: REGISTER_SUCCESS })
@@ -36,9 +42,9 @@ export function register(realname, username, password) {
 
 
 const ACTION_HANDLERS = {
-  [REGISTER_REQUEST]: state => ({ ...state, isRegistering: true, registerError: null }),
+  [REGISTER_REQUEST]: state => ({ ...state, isRegistering: true, errorText: null }),
   [REGISTER_SUCCESS]: state => ({ ...state, isRegistering: false }),
-  [REGISTER_FAILURE]: (state, { error }) => ({ ...state, isRegistering: false, registerError: error }),
+  [REGISTER_FAILURE]: (state, { errorText }) => ({ ...state, isRegistering: false, errorText }),
 }
 
 

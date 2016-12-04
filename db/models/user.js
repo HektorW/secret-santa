@@ -67,7 +67,7 @@ exports.getById = function(id) {
 
 function getByUsername(username) {
   const query = `SELECT username FROM ${tableName} WHERE username = ?`
-  const values = [username]
+  const values = [username.toLowerCase()]
   return db.get(query, values)
 }
 

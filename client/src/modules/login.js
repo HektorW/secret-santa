@@ -1,10 +1,10 @@
-import { get, post } from '../../../api'
-import { loginUser } from '../../../modules/user'
+import { get, post } from '../api'
+import { loginUser } from './user'
 
 
 const initialState = {
   isLoggingIn: false,
-  loginError: null,
+  errorText: null,
 }
 
 
@@ -26,7 +26,13 @@ export function login(username, password) {
     try {
       user = await post('/auth/login', { body })
     } catch (error) {
-      return dispatch({ type: LOGIN_FAILURE, error })
+      let errorText
+      if (error.status === 401) {
+        errorText = 'Det finns ingen användare med den här användarnamn/lösenords-kombinationen.'
+      } else {
+        errorText = 'Något gick snett :(, testa logga in igen.'
+      }
+      return dispatch({ type: LOGIN_FAILURE, errorText })
     }
 
     dispatch({ type: LOGIN_SUCCESS })
@@ -42,19 +48,19 @@ export function fetchLoggedInUser() {
     try {
       user = await get('/auth/loggedInUser')
     } catch (error) {
-      return dispatch({ type: LOGIN_FAILURE, error: null })
+      return dispatch({ type: LOGIN_FAILURE })
     }
 
-    dispatch({ type: LOGIN_SUCCESS })
     dispatch(loginUser(user))
+    dispatch({ type: LOGIN_SUCCESS })
   }
 }
 
 
 const ACTION_HANDLERS = {
-  [LOGIN_REQUEST]: state => ({ ...state, isLoggingIn: true, loginError: null }),
+  [LOGIN_REQUEST]: state => ({ ...state, isLoggingIn: true, errorText: null }),
   [LOGIN_SUCCESS]: state => ({ ...state, isLoggingIn: false }),
-  [LOGIN_FAILURE]: (state, { error }) => ({ ...state, isLoggingIn: false, loginError: error }),
+  [LOGIN_FAILURE]: (state, { errorText }) => ({ ...state, isLoggingIn: false, errorText }),
 }
 
 

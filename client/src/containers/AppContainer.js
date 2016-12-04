@@ -1,7 +1,8 @@
 import React, { Component } from 'react'
 import { Provider } from 'react-redux'
 import { Router } from 'react-router'
-import { fetchLoggedInUser } from '../routes/login/modules/login'
+import { fetchLoggedInUser } from '../modules/login'
+import Snowfall from '../components/Snowfall'
 
 export default class AppContainer extends Component {
   componentWillMount() {
@@ -12,7 +13,10 @@ export default class AppContainer extends Component {
     const { history, routes, store } = this.props
     return (
       <Provider store={store}>
-        <Router history={history} children={routes} />
+        <main>
+          <Snowfall />
+          <Router history={history} children={routes} />    
+        </main>
       </Provider>
     )
   }
