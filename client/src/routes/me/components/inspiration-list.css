@@ -1,0 +1,19 @@
+.inspiration-list {
+  background-color: rgba(23, 23, 26, .95);
+  border-radius: 5px;
+	margin: 0 auto;
+	max-width: 700px;
+  min-height: 300px;
+	padding: 1em 2em 2em 2em;
+	width: 90%;
+}
+
+.inspiration-list p {
+  margin-top: .5em;
+  text-align: center;
+}
+
+.inspiration-list ul {
+  list-style: none;
+  padding: 0;
+}

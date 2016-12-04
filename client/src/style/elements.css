@@ -1,0 +1,28 @@
+.input {
+	background: 0;
+	border: 0;
+	border-bottom: 1px solid;
+	color: inherit;
+	display: block;
+	font-family: inherit;
+	font-size: 2em;
+	margin: .5em 0;
+	outline: 0;
+	width: 100%;
+}
+
+.btn {
+  background-color: rgba(229, 206, 129, 1);
+  border: 1px solid rgba(229, 206, 129, 1);
+  color: rgba(23, 23, 26, 1);
+  cursor: pointer;
+  font-size: inherit;
+  padding: .5em 1em;
+  transition: background-color .2s, color .2s;
+}
+
+.btn:hover,
+.btn:focus {
+  background-color: rgba(23, 23, 26, .95);
+  color: rgba(229, 206, 129, 1);
+}

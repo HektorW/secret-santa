@@ -1,0 +1,24 @@
+.inspiration-item {
+  position: relative;
+}
+
+.inspiration-item.create-new {
+  opacity: .5;
+  transition: opacity .2s;
+}
+
+.inspiration-item.create-new:hover {
+  opacity: .75;
+}
+
+.inspiration-item.create-new.has-focus {
+  opacity: 1;
+}
+
+.inspiration-item .remove {
+  color: inherit;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}

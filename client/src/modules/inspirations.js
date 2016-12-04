@@ -18,8 +18,8 @@ export function setInspirations(inspirations) {
   return { type: SET_INSPIRATIONS, inspirations }
 }
 
-export function addInspiration() {
-  return inspirationAction('post', { value: 'empty' })
+export function addInspiration(value) {
+  return inspirationAction('post', { value })
 }
 
 export function updateInspiration(id, value) {

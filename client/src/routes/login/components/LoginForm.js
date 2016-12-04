@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import './login-form.css'
 
+import Present from '../../../components/svg/Present'
 import santaIconSrc from '../../../res/svg/ic_santa.svg'
 
 export default class LoginForm extends Component {
@@ -43,37 +44,44 @@ export default class LoginForm extends Component {
     const { isLoading, errorText } = this.props
 
     return (
-      <div className={`login-form${registerActive ? ' register-active' : ''}`} >
-        <button className='toggle-btn' onClick={this.toggleRegister}>
-          {registerActive
-            ? <span className="back-text"><span className='icon-navigate_before' />Tillbaka till logga in</span>
-            : <span className="add-text"><img src={santaIconSrc} />Skapa en ny tomte</span>
-          }
-        </button>
+      <div>
+        <h1 className='elfsberg-title'>
+          Elfsbergs<br />
+          <span><Present color='rgba(229, 206, 129, .7)' />Tomte</span>
+        </h1>
 
-        <form onSubmit={this.onSubmit}>
-          {registerActive
-            ? <input type='text' ref='realname' className='realname' placeholder='Riktigt namn' />
+        <div className={`login-form${registerActive ? ' register-active' : ''}`} >
+          <button className='toggle-btn' onClick={this.toggleRegister}>
+            {registerActive
+              ? <span className="back-text"><span className='icon-navigate_before' />Tillbaka till logga in</span>
+              : <span className="add-text"><img src={santaIconSrc} />Skapa en ny tomte</span>
+            }
+          </button>
+
+          <form onSubmit={this.onSubmit}>
+            {registerActive
+              ? <input type='text' ref='realname' className='realname' placeholder='Riktigt namn' />
+              : null
+            }
+            <input type='text' ref='username' className='username' placeholder='Användarnamn' />
+            <input type='password' ref='password' className='password' placeholder='Lösenord' />
+
+            <button className='action-btn'>
+              <span className="login-text"><span className='icon-key' />Logga in</span>
+              <span className="register-text"><img src={santaIconSrc} />Skapa tomte</span>
+            </button>
+          </form>
+
+          {isLoading
+            ? <div>Laddar...</div>
             : null
           }
-          <input type='text' ref='username' className='username' placeholder='Användarnamn' />
-          <input type='password' ref='password' className='password' placeholder='Lösenord' />
 
-          <button className='action-btn'>
-            <span className="login-text"><span className='icon-key' />Logga in</span>
-            <span className="register-text"><img src={santaIconSrc} />Skapa tomte</span>
-          </button>
-        </form>
-
-        {isLoading
-          ? <div>Laddar...</div>
-          : null
-        }
-
-        {errorText
-          ? <p>{errorText}</p>
-          : null
-        }
+          {errorText
+            ? <p>{errorText}</p>
+            : null
+          }
+        </div>
       </div>
     )
   }

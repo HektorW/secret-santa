@@ -1,13 +1,29 @@
+.elfsberg-title {
+  font-size: 3em;
+  font-weight: 100;
+  margin: .25em 0 .5em;
+  text-align: center;
+  text-shadow: -3px 3px 0 rgba(229, 206, 129, .5);
+}
+
+.elfsberg-title span {
+  position: relative;
+}
+
+.elfsberg-title svg {
+  bottom: 10px;
+  height: 27px;
+  left: -25px;
+  position: absolute;
+  width: 24px;
+}
+
 .login-form {
-  background-color: rgba(23, 23, 28, .95);
+  background-color: rgba(23, 23, 26, .95);
   border-radius: 5px;
-	left: 0;
 	margin: 0 auto;
 	max-width: 400px;
 	padding: 2em 2em 4em 2em;
-	position: absolute;
-	right: 0;
-	top: 10%;
 	width: 90%;
 }
 
@@ -49,7 +65,7 @@
 .login-form .action-btn {
 	background-color: #E5CE81;
 	border: solid 1px #E5CE81;
-	color: rgba(23, 23, 28, .95);
+	color: rgba(23, 23, 26, .95);
 	cursor: pointer;
 	font-weight: 400;
 	height: 1.5em;
@@ -96,4 +112,19 @@
 
 .register-active .action-btn > span {
 	transform: translate3d(-100%, -50%, 0);
+}
+
+
+@media screen and (min-width: 600px) {
+  .elfsberg-title {
+    font-size: 5em;
+  }
+
+  .elfsberg-title svg {
+    bottom: 17px;
+    height: 37px;
+    left: -30px;
+    position: absolute;
+    width: 34px;
+  }
 }

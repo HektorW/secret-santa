@@ -20,7 +20,7 @@ export default class SnowManager {
   resize(width, height) {
     this.canvas.width = this.width = width
     this.canvas.height = this.height = height
-    this.maxSnowflakes = Math.max(width / 10, 100)
+    this.maxSnowflakes = Math.max(width / 12, 100)
   }
 
   start() {
