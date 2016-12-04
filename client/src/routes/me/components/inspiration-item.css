@@ -15,10 +15,31 @@
   opacity: 1;
 }
 
+.inspiration-item form {
+  margin-left: 1.5em;
+}
+
 .inspiration-item .remove {
   color: inherit;
   position: absolute;
   right: 0;
   top: 50%;
   transform: translateY(-50%);
+}
+
+.inspiration-item .svg-icon {
+  height: 1em;
+  left: 0;
+  position: absolute;
+  top: calc(50% - .5em);
+  width: 1em;
+}
+
+.inspiration-item.create-new .svg-icon {
+  animation: svg-icon-appear .3s;
+}
+
+@keyframes svg-icon-appear {
+  0% { opacity: 0; transform: scale(0); }
+  100% { opacity: 1; transform: scale(1); }
 }

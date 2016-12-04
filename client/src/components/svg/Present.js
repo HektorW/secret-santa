@@ -1,12 +1,13 @@
 import React from 'react'
 
-export default ({ color = 'red', secondColor = '#868686' }) => (
+export default ({ color = 'red', secondColor = '#868686', className = '' }) => (
   <svg
     width="26.548983mm"
     height="29.334944mm"
     viewBox="0 0 94.071198 103.94271"
     id="svg4267"
     version="1.1"
+    className={className}
   >
     <defs id="defs4269" />
     <g
