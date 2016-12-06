@@ -24,3 +24,7 @@ button {
   color: inherit;
   font-size: inherit;
 }
+
+input {
+  border-radius: 0;
+}
