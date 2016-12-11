@@ -28,11 +28,11 @@
 }
 
 .inspiration-item .svg-icon {
-  height: 1em;
+  height: 1.5em;
   left: 0;
   position: absolute;
   top: calc(50% - .5em);
-  width: 1em;
+  width: 1.5em;
 }
 
 .inspiration-item.create-new .svg-icon {

@@ -1,0 +1,47 @@
+.assigned .santa-preamble {
+  text-align: center;
+}
+
+.assigned .santa-preamble img {
+  height: 1.5em;
+}
+
+.assigned .santa-name {
+  margin-top: .25em;
+}
+
+.assigned .navigation {
+  overflow: hidden;
+}
+
+.assigned .edit-link {
+  float: right;
+}
+
+.assigned .inspiration-img img {
+  cursor: pointer;
+  display: block;
+  margin: 3em auto 0;
+  width: 120px;
+}
+
+.assigned .inspiration-item {
+  margin: .5em 0;
+}
+
+.assigned .inspiration-item .value {
+  font-size: 2em;
+  padding: 0 1em;
+}
+
+
+
+@media screen and (min-width: 600px) {
+  .assigned .santa-name {
+    margin-top: .35em;
+  }
+
+  .assigned .inspiration-list {
+    padding: 1em 4em 2em 4em;
+  }
+} 

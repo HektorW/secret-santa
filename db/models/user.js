@@ -13,12 +13,15 @@ const tableColumns = usePostgres === true
     'username TEXT',
     'password TEXT',
     'realname TEXT',
+    'assignedid INTEGER REFERENCES user_table'
   ]
   : [
     'id INTEGER PRIMARY KEY AUTOINCREMENT',
     'username TEXT',
     'password TEXT',
     'realname TEXT',
+    'assignedid REFERENCES user_table',
+    'FOREIGN KEY(assignedid) REFERENCES user_table(id)',
   ]
 
 exports.setup = function setup() {
@@ -55,13 +58,33 @@ exports.authenticateUser = function(username, password) {
     })
 }
 
-exports.getById = function(id) {
-  const query = `SELECT id, username, realname FROM ${tableName} WHERE id = ?`
+exports.getById = function(id, includeAssigned = true) {
+  const query = `SELECT id, username, realname${includeAssigned ? ', assignedid' : ''} FROM ${tableName} WHERE id = ?`
   const values = [id]
   return db.get(query, values)
+    .then(user =>
+      includeAssigned && user.assignedid
+        ? exports.getById(user.assignedid, false)
+          .then(assigned => Object.assign({ assigned }, user))
+        : user 
+    )
     .then(user => getUserInspirations(id)
       .then(inspirations => Object.assign({ inspirations }, user))
     )
+}
+
+
+exports.getAll = function() {
+  const query = `SELECT id, realname FROM ${tableName}`
+  const values = []
+  return db.all(query, values)
+}
+
+
+exports.addAssignedId = function(id, assignedId) {
+  const query = `UPDATE ${tableName} SET assignedid = ? WHERE id =?`
+  const values = [assignedId, id]
+  return db.run(query, values)
 }
 
 

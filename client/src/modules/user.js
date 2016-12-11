@@ -11,7 +11,7 @@ const initialState = {
 }
 
 
-const LOGIN_USER = 'LOGIN_USER'
+export const LOGIN_USER = 'LOGIN_USER'
 const LOGOUT_USER = 'LOGOUT_USER'
 
 

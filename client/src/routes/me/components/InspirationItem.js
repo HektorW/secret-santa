@@ -1,23 +1,6 @@
 import React, { Component } from 'react'
 import './inspiration-item.css'
-
-import Ball from '../../../components/svg/Ball'
-import Bell from '../../../components/svg/Bell'
-import MistleToe from '../../../components/svg/MistleToe'
-import Polka from '../../../components/svg/Polka'
-import Present from '../../../components/svg/Present'
-import SantaHat from '../../../components/svg/SantaHat'
-import Tree from '../../../components/svg/Tree'
-
-const icons = [
-  Tree,
-  Polka,
-  Bell,
-  Ball,
-  MistleToe,
-  Present,
-  SantaHat
-]
+import { getIconByIndex } from '../../../components/svg'
 
 export default class InspirationItem extends Component {
   state = {
@@ -60,7 +43,7 @@ export default class InspirationItem extends Component {
     if (isCreateNew) className += ' create-new'
     if (hasFocus) className += ' has-focus'
 
-    const Icon = icons[index % icons.length]
+    const Icon = getIconByIndex(index)
 
     return (
       <li className={className}>

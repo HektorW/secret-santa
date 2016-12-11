@@ -1,6 +1,6 @@
 import React from 'react'
 
-export default ({ color = 'red', secondColor = secondColor, className = '' }) => (
+export default ({ color = 'rgba(229, 206, 129, .75)', secondColor = '#868686', className = '' }) => (
   <svg
     width="25.863327mm"
     height="32.212097mm"

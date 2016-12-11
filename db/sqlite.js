@@ -2,7 +2,7 @@ const { join } = require('path')
 const { Database } = require('sqlite3')
 
 let db
-const dbFile = join(__dirname, 'users.sqlite3')
+const dbFile = join(__dirname, 'db.sqlite3')
 
 exports.setup = function setup() {
   db = new Database(dbFile)

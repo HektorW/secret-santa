@@ -6,6 +6,7 @@
 	display: block;
 	font-family: inherit;
 	font-size: 2em;
+  font-weight: 100;
 	margin: .5em 0;
 	outline: 0;
 	width: 100%;
@@ -25,6 +26,35 @@
 .btn:focus {
   background-color: rgba(23, 23, 26, .95);
   color: rgba(229, 206, 129, 1);
+}
+
+.big-name {
+  font-weight: 100;
+  text-align: center;
+  text-shadow: -3px 3px 0 rgba(229, 206, 129, .5);
+}
+
+.link {
+  background: 0;
+  border-bottom: 1px solid;
+  color: inherit;
+  cursor: pointer;
+  font-size: .8em;
+  font-weight: 300;
+  margin: .25em .75em 1em;
+  padding: .25em .5em;
+  text-decoration: none;
+}
+
+.navigation {
+  overflow: hidden;
+}
+
+.navigation > :nth-child(1) {
+  float: left;
+}
+.navigation > :nth-child(2) {
+  float: right;
 }
 
 @media screen and (min-width: 320px) {

@@ -1,0 +1,72 @@
+.santa-name {
+  font-size: 4em;
+  font-weight: 100;
+  margin: .75em 0 .25em;
+}
+
+.santa-name span {
+  position: relative;
+}
+
+.santa-name svg {
+  height: auto;
+  left: -27px;
+  position: absolute;
+  top: -25px;
+  transform: rotate(-30deg);
+  width: 40px;
+}
+
+.assigned-name .present,
+.assigned-name .tree {
+  top: auto;
+  transform: rotate(0);
+  transition: transform .3s;
+}
+
+.assigned-name .present {
+  bottom: 12px;
+  left: auto;
+  right: -20px;
+  width: 17px;
+}
+
+.assigned-name .tree {
+  bottom: 14px;
+  left: -28px;
+  transform-origin: bottom;
+  width: 25px;
+}
+
+.assigned-name:hover .present {
+  transform: rotate(10deg);
+}
+
+.assigned-name:hover .tree {
+  transform: rotate(-10deg);
+}
+
+
+@media screen and (min-width: 600px) {
+  .santa-name {
+    font-size: 6em;
+  }
+
+  .santa-name svg {
+    left: -37px;
+    top: -35px;
+    width: 60px;
+  }
+
+  .assigned-name .present {
+    bottom: 17px;
+    right: -27px;
+    width: 25px;
+  }
+
+  .assigned-name .tree {
+    bottom: 19px;
+    left: -37px;
+    width: 35px;
+  }
+}

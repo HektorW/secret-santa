@@ -1,5 +1,5 @@
 import { get, post } from '../api'
-import { loginUser } from './user'
+import { LOGIN_USER, loginUser } from './user'
 
 
 const initialState = {
@@ -58,6 +58,7 @@ export function fetchLoggedInUser() {
 
 
 const ACTION_HANDLERS = {
+  [LOGIN_USER]: state => ({ ...state, errorText: null }),
   [LOGIN_REQUEST]: state => ({ ...state, isLoggingIn: true, errorText: null }),
   [LOGIN_SUCCESS]: state => ({ ...state, isLoggingIn: false }),
   [LOGIN_FAILURE]: (state, { errorText }) => ({ ...state, isLoggingIn: false, errorText }),

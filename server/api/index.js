@@ -1,6 +1,7 @@
 const { Router } = require('express')
 
 const routes = {
+  '/admin': require('./admin'),
   '/auth': require('./auth'),
   '/inspiration': require('./inspiration')
 }

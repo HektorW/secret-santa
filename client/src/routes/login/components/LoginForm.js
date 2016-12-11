@@ -45,7 +45,7 @@ export default class LoginForm extends Component {
 
     return (
       <div>
-        <h1 className='elfsberg-title'>
+        <h1 className='big-name elfsberg-title'>
           Elfsbergs<br />
           <span><Present color='rgba(229, 206, 129, .7)' />Tomte</span>
         </h1>
@@ -54,7 +54,7 @@ export default class LoginForm extends Component {
           <button className='toggle-btn' onClick={this.toggleRegister}>
             {registerActive
               ? <span className="back-text"><span className='icon-navigate_before' />Tillbaka till logga in</span>
-              : <span className="add-text"><img src={santaIconSrc} />Skapa en ny tomte</span>
+              : <span className="add-text"><img role='presentation' src={santaIconSrc} />Skapa en ny tomte</span>
             }
           </button>
 
@@ -68,7 +68,7 @@ export default class LoginForm extends Component {
 
             <button className='action-btn'>
               <span className="login-text"><span className='icon-key' />Logga in</span>
-              <span className="register-text"><img src={santaIconSrc} />Skapa tomte</span>
+              <span className="register-text"><img role='presentation' src={santaIconSrc} />Skapa tomte</span>
             </button>
           </form>
 

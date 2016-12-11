@@ -1,18 +1,22 @@
 import React from 'react'
+import { Link } from 'react-router'
+import InspirationList from './InspirationList'
+import Logout from '../../../components/Logout'
+import SantaName from '../../../components/SantaName'
+import santaIconSrc from '../../../res/svg/ic_santa.svg'
 import './me.css'
 
-// import santaHatSrc from '../../../res/svg/hatsvg.svg'
-import SantaHat from '../../../components/svg/SantaHat'
-
-import InspirationList from './InspirationList'
-
-export default ({ realname, inspirations, addInspiration, updateInspiration, removeInspiration, logout }) => (
+export default ({ assigned, realname, inspirations, addInspiration, updateInspiration, removeInspiration }) => (
   <div className='me'>
-    <button className='logout' onClick={logout}><span className='icon-arrow_back' />Logga ut</button>
+    <div className="navigation">
+      <Logout />
+      {assigned
+        ? <Link to='/assigned' className='link assigned-link'>Till <img src={santaIconSrc} alt='tomte' /></Link>
+        : null 
+      }
+    </div>
 
-    <h1 className='name'>
-      <span><SantaHat color='rgba(229, 206, 129, .75)' />{realname}</span>
-    </h1>
+    <SantaName name={realname} />
 
     <InspirationList
       inspirations={inspirations}

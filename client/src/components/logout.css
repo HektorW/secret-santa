@@ -1,0 +1,13 @@
+.logout {
+  background: 0;
+  border-bottom: 1px solid;
+  cursor: pointer;
+  font-size: .8em;
+  font-weight: 300;
+  margin: .25em .75em 1em;
+}
+
+.logout [class*='icon'] {
+  font-size: .8em;
+  margin: 0 4px 0 0;
+}
