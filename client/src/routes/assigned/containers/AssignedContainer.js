@@ -1,6 +1,7 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
 
+import PageTransitions from '../../../components/PageTransitions'
 import AssignedView from '../components/AssignedView'
 import Present from '../components/Present'
 
@@ -34,11 +35,14 @@ class AssignedContainer extends Component {
     const { hasSeenReveal } = this.state
     const { assigned } = this.props
 
-    if (!hasSeenReveal) {
-      return <Present name={assigned.realname} onDone={() => this.onRevealDone()} />
-    }
-
-    return <AssignedView assigned={assigned} resetRevealState={() => this.resetRevealState()} />
+    return (
+      <PageTransitions location={{ pathname: hasSeenReveal ? 'assigned' : 'present' }}>
+        {hasSeenReveal
+          ? <AssignedView assigned={assigned} resetRevealState={() => this.resetRevealState()} /> 
+          : <Present name={assigned.realname} onDone={() => this.onRevealDone()} />
+        }
+      </PageTransitions>
+    )
   }
 }
 
